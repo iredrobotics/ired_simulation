@@ -1,0 +1,387 @@
+<?xml version="1.0" ?>
+<robot name="ired" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="lidar_noise_stddev" default="0.01" />
+
+  <xacro:include filename="$(find ired_simulation)/urdf/materials.xacro" />
+  <xacro:include filename="$(find ired_simulation)/urdf/ired.gazebo" />
+
+  <link name="base_footprint"/>
+  <link name="imu_link"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.024411535922526425 0.00027309252919574317 0.006052652881061328"/>
+      <mass value="1.9721516353323123"/>
+      <inertia ixx="0.009573" ixy="2.9e-05" ixz="-0.001263" iyy="0.014869" iyz="-1.3e-05" izz="0.020224"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.57079632679 1.57079632679 3.14159265359" xyz="0.035 0.04 0"/>
+      <geometry>
+        <mesh filename="file://$(find ired_simulation)/meshes/ired.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0000 0.0000 0.0050"/>
+      <geometry>
+        <box size="0.2600 0.2320 0.1080"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="base_motor_left_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0021965093308848596 -0.0026095144784746005 -0.038191483650875616"/>
+      <mass value="0.10641413898544581"/>
+      <inertia ixx="8.1e-05" ixy="-0.0" ixz="-1e-06" iyy="0.000129" iyz="-2e-06" izz="8.3e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0000 0.0 -0.0214"/>
+      <geometry>
+        <box size="0.0940 0.0623 0.0831"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="base_motor_right_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0021965093308845994 0.0026095144784733515 -0.03819148365087592"/>
+      <mass value="0.10641413898544581"/>
+      <inertia ixx="8.1e-05" ixy="-0.0" ixz="1e-06" iyy="0.000129" iyz="2e-06" izz="8.3e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0000 0.0 -0.0214"/>
+      <geometry>
+        <box size="0.0940 0.0623 0.0831"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_right_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-2.9774770759443608e-05 -0.012518546956060236 -3.4801874350745554e-06"/>
+      <mass value="0.055079364860502134"/>
+      <inertia ixx="2.3e-05" ixy="0.0" ixz="0.0" iyy="3.9e-05" iyz="0.0" izz="2.3e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.0 -0.0125"/>
+      <geometry>
+        <cylinder length="0.025" radius="0.034"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_left_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="2.977477075947231e-05 0.012518546956059154 -3.4801874345471995e-06"/>
+      <mass value="0.055079364860502134"/>
+      <inertia ixx="2.3e-05" ixy="0.0" ixz="-0.0" iyy="3.9e-05" iyz="-0.0" izz="2.3e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0000 0.0 0.0125"/>
+      <geometry>
+        <cylinder length="0.025" radius="0.034"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="mounting_plate_fl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.749989042565403e-14 1.3877787807814457e-17 -0.0015854144279827329"/>
+      <mass value="0.011780477905183669"/>
+      <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 -0.0019"/>
+      <geometry>
+        <box size="0.0450 0.0380 0.0038"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="swivel_fl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.004990769957603683 -1.3070688001382003e-07 -0.011125942132032766"/>
+      <mass value="0.009516543990746537"/>
+      <inertia ixx="2e-06" ixy="-0.0" ixz="-0.0" iyy="2e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0015 0 -0.018"/>
+      <geometry>
+        <box size="0.0338 0.0308 0.0350"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_caster_link_fl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.700893815376192e-07 -5.472428066255475e-13 -8.573905474484889e-13"/>
+      <mass value="0.015286630712712204"/>
+      <inertia ixx="2e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="-1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.0243" radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="mounting_plate_fr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.749989042565403e-14 -1.124100812432971e-15 -0.0015854144279833123"/>
+      <mass value="0.011780477905183669"/>
+      <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 -0.0019"/>
+      <geometry>
+        <box size="0.0450 0.0380 0.0038"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="swivel_fr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.004990769957603711 -1.3070688113792084e-07 -0.011125942132033322"/>
+      <mass value="0.009516543990746537"/>
+      <inertia ixx="2e-06" ixy="-0.0" ixz="-0.0" iyy="2e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0015 0 -0.018"/>
+      <geometry>
+        <box size="0.0338 0.0308 0.0350"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_caster_link_fr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.7008938152374142e-07 -5.483669074379804e-13 -8.578901478095702e-13"/>
+      <mass value="0.015286630712712204"/>
+      <inertia ixx="2e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="-1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.0243" radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="mounting_plate_rl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.765254609153999e-14 1.1102230246251565e-16 -0.0015854144279822784"/>
+      <mass value="0.011780477905183669"/>
+      <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 -0.0019"/>
+      <geometry>
+        <box size="0.0450 0.0380 0.0038"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="swivel_rl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.004990769957603794 -1.307068799166755e-07 -0.011125942132032322"/>
+      <mass value="0.009516543990746537"/>
+      <inertia ixx="2e-06" ixy="-0.0" ixz="-0.0" iyy="2e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0015 0 -0.018"/>
+      <geometry>
+        <box size="0.0338 0.0308 0.0350"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_caster_link_rl_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.700893814404747e-07 -5.471595398987006e-13 -8.569187026630232e-13"/>
+      <mass value="0.015286630712712204"/>
+      <inertia ixx="2e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="-1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.0243" radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="mounting_plate_rr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.7083556791419596e-14 -2.7755575615628914e-16 -0.0015854144279832498"/>
+      <mass value="0.011780477905183669"/>
+      <inertia ixx="1e-06" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 -0.0019"/>
+      <geometry>
+        <box size="0.0450 0.0380 0.0038"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="swivel_rr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.004990769957603225 -1.3070688031913136e-07 -0.01112594213203328"/>
+      <mass value="0.009516543990746537"/>
+      <inertia ixx="2e-06" ixy="-0.0" ixz="-0.0" iyy="2e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0015 0 -0.018"/>
+      <geometry>
+        <box size="0.0338 0.0308 0.0350"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheel_caster_link_rr_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.7008938202334178e-07 -5.475897513207428e-13 -8.578901478095702e-13"/>
+      <mass value="0.015286630712712204"/>
+      <inertia ixx="2e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="-0.0" izz="2e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="-1.57079632679 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.0243" radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="base_scan">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.012513661339242435 -0.00038532204065948143 -0.019078463215291126"/>
+      <mass value="0.1162471975195368"/>
+      <inertia ixx="4.9e-05" ixy="-1e-06" ixz="1e-05" iyy="9.8e-05" iyz="0.0" izz="0.000115"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.0243" radius="0.03775"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="camera_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.009509099201237561 -0.0016096768832291896 4.0897895226040676e-05"/>
+      <mass value="0.09962898997856601"/>
+      <inertia ixx="9.6e-05" ixy="-0.0" ixz="-0.0" iyy="1.1e-05" iyz="-0.0" izz="9.1e-05"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0095 0 0"/>
+      <geometry>
+        <box size="0.0190 0.1093 0.0313"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0799"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  <joint name="imu_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.067296 -0.007992 0.01919"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+  <joint name="motor_left_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0025 0.0663 0.001"/>
+    <parent link="base_link"/>
+    <child link="base_motor_left_link"/>
+  </joint>
+  <joint name="motor_right_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0025 -0.0663 0.001"/>
+    <parent link="base_link"/>
+    <child link="base_motor_right_link"/>
+  </joint>
+  <joint name="wheel_right_joint" type="continuous">
+    <origin rpy="-1.57079632679 0 0" xyz="0.0025 -0.0196 -0.0469"/>
+    <parent link="base_motor_right_link"/>
+    <child link="wheel_right_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+  <joint name="wheel_left_joint" type="continuous">
+    <origin rpy="-1.57079632679 0 0" xyz="-0.0025 0.0196 -0.0469"/>
+    <parent link="base_motor_left_link"/>
+    <child link="wheel_left_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+  <joint name="mounting_plate_fl_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.092 0.075 -0.028"/>
+    <parent link="base_link"/>
+    <child link="mounting_plate_fl_link"/>
+  </joint>
+  <joint name="swivel_fl_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.0038"/>
+    <parent link="mounting_plate_fl_link"/>
+    <child link="swivel_fl_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+  <joint name="wheel_caster_link_fl_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.012352 0.0 -0.02888"/>
+    <parent link="swivel_fl_link"/>
+    <child link="wheel_caster_link_fl_link"/>
+    <axis xyz="-0.0 1.0 0.0"/>
+    <dynamics damping="0.05" friction="0.01"/>
+  </joint>
+  <joint name="mounting_plate_fr_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.092 -0.075 -0.028"/>
+    <parent link="base_link"/>
+    <child link="mounting_plate_fr_link"/>
+  </joint>
+  <joint name="swivel_fr_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.0038"/>
+    <parent link="mounting_plate_fr_link"/>
+    <child link="swivel_fr_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+  <joint name="wheel_caster_link_fr_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.012352 0.0 -0.02888"/>
+    <parent link="swivel_fr_link"/>
+    <child link="wheel_caster_link_fr_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.05" friction="0.01"/>
+  </joint>
+  <joint name="mounting_plate_rl_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.092 0.075 -0.028"/>
+    <parent link="base_link"/>
+    <child link="mounting_plate_rl_link"/>
+  </joint>
+  <joint name="swivel_rl_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.0038"/>
+    <parent link="mounting_plate_rl_link"/>
+    <child link="swivel_rl_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+  <joint name="wheel_caster_link_rl_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.012352 0.0 -0.02888"/>
+    <parent link="swivel_rl_link"/>
+    <child link="wheel_caster_link_rl_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.05" friction="0.01"/>
+  </joint>
+  <joint name="mounting_plate_rr_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.092 -0.075 -0.028"/>
+    <parent link="base_link"/>
+    <child link="mounting_plate_rr_link"/>
+  </joint>
+  <joint name="swivel_rr_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.0038"/>
+    <parent link="mounting_plate_rr_link"/>
+    <child link="swivel_rr_link"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+  <joint name="wheel_caster_link_rr_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.012352 0.0 -0.02888"/>
+    <parent link="swivel_rr_link"/>
+    <child link="wheel_caster_link_rr_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.05" friction="0.01"/>
+  </joint>
+  <joint name="scan_joint" type="fixed">
+    <origin rpy="0 0 3.1415926535" xyz="0.082 0.0 0.0451"/>
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+  </joint>
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="3.1415926535 3.1415926535 3.1415926535" xyz="0.125 0.0 -0.0164"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+</robot>

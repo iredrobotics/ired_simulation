@@ -1,0 +1,47 @@
+[INFO] [launch]: All log files can be found below /home/thitipongth/.ros/log/2026-09-04-16-21-02-159679-parallels-85430
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [85438]
+[INFO] [gazebo-2]: process started with pid [85439]
+[INFO] [create-3]: process started with pid [85440]
+[INFO] [parameter_bridge-4]: process started with pid [85442]
+[INFO] [scan_to_scan_filter_chain-5]: process started with pid [85443]
+[robot_state_publisher-1] [0m[INFO] [1788513662.466735632] [robot_state_publisher]: Robot initialized[0m
+[scan_to_scan_filter_chain-5] [0m[INFO] [1788513662.516345257] [scan_to_scan_filter_chain]: In shadow configure done[0m
+[create-3] [0m[INFO] [1788513662.569229882] [ros_gz_sim]: Requesting list of world names.[0m
+[gazebo-2] [1;31m[Err] [Server.cc:86] [0m[1;31mError Code [0m[1;31m14[0m[1;31m: [0m[1;31m[/sdf/world[@name="default"]/model[@name="turtlebot3_world"]/include[0]/uri:/home/thitipongth/ired_ws/install/ired_simulation/share/ired_simulation/worlds/turtlebot3_world.world:L57]: [0m[1;31mMsg: [0m[1;31mUnable to find uri[model://turtlebot3_world][0m[1;31m[0m
+[gazebo-2] [1;36m[Dbg] [gz.cc:166] [0m[1;36mSubscribing to [[0m[1;36m/gazebo/starting_world[0m[1;36m].[0m[1;36m[0m
+[gazebo-2] [1;36m[Dbg] [gz.cc:168] [0m[1;36mWaiting for a world to be set from the GUI...[0m[1;36m[0m
+[gazebo-2] [1;32m[Msg] [0m[1;32mReceived world [[0m[1;32m/home/thitipongth/ired_ws/install/ired_simulation/share/ired_simulation/worlds/turtlebot3_world.world[0m[1;32m] from the GUI.[0m[1;32m[0m
+[gazebo-2] [1;36m[Dbg] [gz.cc:172] [0m[1;36mUnsubscribing from [[0m[1;36m/gazebo/starting_world[0m[1;36m].[0m[1;36m[0m
+[gazebo-2] [1;32m[Msg] [0m[1;32mGazebo Sim Server v[0m[1;32m8.11.0[0m[1;32m[0m
+[gazebo-2] [1;32m[Msg] [0m[1;32mLoading SDF world file[[0m[1;32m/home/thitipongth/ired_ws/install/ired_simulation/share/ired_simulation/worlds/turtlebot3_world.world[0m[1;32m].[0m
+[gazebo-2] [1;36m[Dbg] [gz.cc:434] [0m[1;36mShutting down gz-sim-server[0m[1;36m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;33m[GUI] [Wrn] [Application.cc:908] [0m[1;33m[QT] file:///usr/lib/aarch64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"[0m[1;33m[0m
+[gazebo-2] [1;32m[Msg] [0m[1;32mGazebo Sim GUI    v[0m[1;32m8.11.0[0m[1;32m[0m
+[gazebo-2] [1;32m[Msg] [0m[1;32mDetected Wayland. Setting Qt to use the xcb plugin: [0m[1;32m'QT_QPA_PLATFORM=xcb'.[0m[1;32m[0m
+[gazebo-2] [1;36m[Dbg] [Gui.cc:275] [0m[1;36mWaiting for subscribers to [[0m[1;36m/gazebo/starting_world[0m[1;36m]...[0m[1;36m[0m
+[gazebo-2] [1;36m[Dbg] [Application.cc:96] [0m[1;36mInitializing application.[0m[1;36m[0m
+[gazebo-2] [1;36m[Dbg] [Application.cc:170] [0m[1;36mQt using OpenGL graphics interface[0m[1;36m[0m
+[gazebo-2] [1;36m[GUI] [Dbg] [Application.cc:657] [0m[1;36mCreate main window[0m[1;36m[0m
+[gazebo-2] [1;36m[GUI] [Dbg] [SignalHandler.cc:142] [0m[1;36mReceived signal[[0m[1;36m2[0m[1;36m].[0m
+[gazebo-2] [1;36m[GUI] [Dbg] [SignalHandler.cc:142] [0m[1;36mReceived signal[[0m[1;36m2[0m[1;36m].[0m
+[gazebo-2] [1;36m[GUI] [Dbg] [PathManager.cc:68] [0m[1;36mRequesting resource paths through [[0m[1;36m/gazebo/resource_paths/get[0m[1;36m][0m[1;36m[0m
+[gazebo-2] [1;36m[GUI] [Dbg] [Application.cc:237] [0m[1;36mTerminating application.[0m[1;36m[0m
+[INFO] [gazebo-2]: process has finished cleanly [pid 85439]
+[parameter_bridge-4] [0m[INFO] [1788513663.569895091] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.571011424] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/TwistStamped) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.572699299] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> /odom (nav_msgs/msg/Odometry)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.573681174] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> /tf (tf2_msgs/msg/TFMessage)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.574583591] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (gz.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.575848008] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ired/imu/data (gz.msgs.IMU) -> /ired/imu/data (sensor_msgs/msg/Imu)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.576331174] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)[0m
+[parameter_bridge-4] [0m[INFO] [1788513663.576872174] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/ired/pose (gz.msgs.Pose_V) -> /model/ired/pose (tf2_msgs/msg/TFMessage)] (Lazy 0)[0m
+[create-3] [0m[INFO] [1788513667.569667635] [ros_gz_sim]: Requesting list of world names.[0m

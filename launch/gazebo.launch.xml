@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="world" default="turtlebot3_world" description="World name; loads worlds/&lt;world&gt;.world."/>
+  <arg name="rviz" default="false" description="Launch RViz to show the robot model."/>
+  <arg name="gui" default="true" description="Run the gz sim GUI. false =&gt; server-only (headless)."/>
+  <arg name="use_sim_time" default="true" description="Use /clock from gz sim."/>
+  <arg name="use_laser_filters" default="true" description="Run the laser_filters scan chain (/scan -&gt; /scan_filtered)."/>
+  <arg name="x" default="-2.0"/>
+  <arg name="y" default="-0.5"/>
+  <arg name="z" default="0.1"/>
+  <arg name="roll" default="0.0"/>
+  <arg name="pitch" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <let name="world_file" value="$(find-pkg-share ired_simulation)/worlds/$(var world).world"/>
+  <let name="bridge_config" value="$(find-pkg-share ired_simulation)/config/ros_gz_bridge.yaml"/>
+  <let name="laser_filter_params" value="$(find-pkg-share ired_simulation)/config/laser_config.yaml"/>
+
+  <append_env name="GZ_SIM_RESOURCE_PATH"
+              value="$(find-pkg-share nav2_minimal_tb3_sim)/models" prepend="true"/>
+
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" output="screen">
+    <param name="robot_description" type="str"
+           value="$(command 'xacro $(find-pkg-share ired_simulation)/urdf/ired.urdf.xacro')"/>
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+  <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py" if="$(var gui)">
+    <arg name="gz_args" value="-r -v 4 $(var world_file)"/>
+  </include>
+  <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py" unless="$(var gui)">
+    <arg name="gz_args" value="-s -r -v 4 $(var world_file)"/>
+  </include>
+
+  <node pkg="ros_gz_sim" exec="create" output="screen"
+        args="-topic robot_description -name ired -x $(var x) -y $(var y) -z $(var z) -R $(var roll) -P $(var pitch) -Y $(var yaw)"/>
+
+  <node pkg="ros_gz_bridge" exec="parameter_bridge" output="screen">
+    <param name="config_file" value="$(var bridge_config)"/>
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+  <group if="$(var use_laser_filters)">
+    <node pkg="laser_filters" exec="scan_to_scan_filter_chain" name="scan_to_scan_filter_chain" output="screen">
+      <param name="use_sim_time" value="$(var use_sim_time)"/>
+      <param from="$(var laser_filter_params)"/>
+      <remap from="scan" to="/scan"/>
+      <remap from="scan_filtered" to="/scan_filtered"/>
+    </node>
+  </group>
+
+  <node pkg="rviz2" exec="rviz2" name="rviz2" output="screen" if="$(var rviz)"
+        args="-d $(find-pkg-share ired_simulation)/rviz/ired.rviz">
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+</launch>

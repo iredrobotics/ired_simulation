@@ -1,0 +1,22 @@
+scan_to_scan_filter_chain:
+  ros__parameters:
+    filter1:
+      name: angle_filter_1
+      type: laser_filters/LaserScanAngularBoundsFilterInPlace
+      params:
+        lower_angle: 0.42
+        upper_angle: 0.54
+    filter2:
+      name: angle_filter_2
+      type: laser_filters/LaserScanAngularBoundsFilterInPlace
+      params:
+        lower_angle: -0.54
+        upper_angle: -0.42
+    filter3:
+      name: shadows
+      type: laser_filters/ScanShadowsFilter
+      params:
+        min_angle: 15.0
+        max_angle: 170.0
+        neighbors: 2
+        window: 1
