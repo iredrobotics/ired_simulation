@@ -4,14 +4,14 @@ scan_to_scan_filter_chain:
       name: angle_filter_1
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        lower_angle: 0.42
-        upper_angle: 0.54
+        lower_angle: 0.3
+        upper_angle: 0.6
     filter2:
       name: angle_filter_2
       type: laser_filters/LaserScanAngularBoundsFilterInPlace
       params:
-        lower_angle: -0.54
-        upper_angle: -0.42
+        lower_angle: -0.6
+        upper_angle: -0.3
     filter3:
       name: shadows
       type: laser_filters/ScanShadowsFilter
